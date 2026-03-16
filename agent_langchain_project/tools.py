@@ -19,6 +19,7 @@ import os
 import time
 # 导入整个模块（避免按名字导入引起的 ImportError）
 from . import tools_trading
+from .tools_vuln_risk import scan_vuln_risk_tool
 from .memory import init_long_memory, get_long_memory
 from .context_request_id import get_request_id
 from .tools_trading import (
@@ -274,6 +275,7 @@ def build_tools() -> List[Tool]:
         Tool(name="PersistMemory", func=persist_memory_tool, description="Persist memory to disk"),
         Tool(name="LoadMemory", func=load_memory_tool, description="Load memory metadata/info"),
         Tool(name="FetchRenderedPage", func=fetch_rendered_page_tool, description="Fetch rendered page (Playwright or requests fallback)"),
+        Tool(name="ScanVulnRisk", func=scan_vuln_risk_tool, description="Scan requirements.txt (name==version) and query OSV.dev; output a RiskCard with evidence"),
         Tool(name="ReadTradingCSV", func=tool_read_trading_csv, description="Read trading CSV or 'clipboard'"),
         Tool(name="AnalyzePortfolio", func=tool_analyze, description="Analyze portfolio snapshot or file"),
         Tool(name="SuggestAction", func=tool_suggest, description="Suggest trading actions (read-only)"),
